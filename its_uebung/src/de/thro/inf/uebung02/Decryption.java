@@ -31,7 +31,11 @@ public class Decryption {
      */
     public void readFromFileBase64(String inputFile)throws Exception
     {
-        // TODO
+        FileInputStream fis = new FileInputStream(inputFile);
+        byte[] data = new byte[fis.available()];
+        fis.read(data);
+        encryptedData = Base64.getDecoder().decode(data);
+        fis.close();
     }
 
     /**
@@ -42,7 +46,11 @@ public class Decryption {
      */
     public void readKey(String inputFile) throws Exception
     {
-        // TODO
+        FileInputStream fis = new FileInputStream(inputFile);
+        byte[] data = new byte[fis.available()];
+        fis.read(data);
+        key = new SecretKeySpec(Base64.getDecoder().decode(data), algorithm);
+        fis.close();
     }
 
     /**
@@ -53,7 +61,10 @@ public class Decryption {
      */
     public String decrypt()throws Exception
     {
-        // TODO
-        return null;
+        cipher = Cipher.getInstance(cipherAlgorithm);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        data = cipher.doFinal(encryptedData);
+
+        return new String(data);
     }
 }

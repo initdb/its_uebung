@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.NoSuchFileException;
-import java.util.Arrays;
 import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
